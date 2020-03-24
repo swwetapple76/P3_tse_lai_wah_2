@@ -7,9 +7,11 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,6 +26,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChild
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -40,6 +43,7 @@ public class NeighboursListTest {
     private static int ITEMS_COUNT = 12;
 
     private ListNeighbourActivity mActivity;
+    private NeighbourApiService mServices;
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityRule =
@@ -59,6 +63,36 @@ public class NeighboursListTest {
         // First scroll to the position that needs to be matched and click on it.
         onView(ViewMatchers.withId(R.id.list_neighbours))
                 .check(matches(hasMinimumChildCount(1)));
+    }
+
+    // Test 1
+    /*test vérifiant que lorsqu’on clique sur un élément de la liste,
+    l’écran de détails est bien lancé ;*/
+    @Test
+    public void click_item_to_ListDetailNeighbourActivity(){
+
+        String ITEM_NAME= "Caroline";
+
+        onView(allOf(withId(R.id.list_neighbours),isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+
+        onView(withId(R.id.activity_detail_neighbour)).check(matches(isDisplayed()));
+
+        onView(allOf(withId(R.id.person_name),isDisplayed())).check(matches(withText(ITEM_NAME)));
+    }
+
+    //Test 2
+    /*test vérifiant qu’au démarrage de ce nouvel écran, le TextView indiquant le nom de
+    l’utilisateur en question est bien rempli ;*/
+    @Test
+    public void listDetailNeighbourActivity_name_isDisplay() {
+        onView(Matchers.allOf(withId(R.id.list_neighbours), isDisplayed()))
+                .perform(actionOnItemAtPosition(0, click()));
+
+        onView(withId(R.id.activity_detail_neighbour)).check(matches(isDisplayed()));
+
+        onView((allOf(withId(R.id.person_name), isDisplayed())))
+                .check(matches(withText(mServices.getNeighbours().get(0).getName())));
     }
 
     /**
@@ -83,7 +117,7 @@ public class NeighboursListTest {
 
         onView(withContentDescription("Favorites")).perform(click());
 
-        onView(allOf(withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(0));
+        onView(allOf(withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(3));
     }
 
 }
