@@ -90,7 +90,8 @@ public class NeighbourFragment extends Fragment {
 
     @Subscribe
     public void onAddNeighbour(AddNeighbourEvent event) {
-        mApiService.addNeighbour(event.neighbour);
+        Neighbour neighbour = Neighbour.addNewNeighbour();
+        mApiService.addNeighbour(neighbour);
         initList();
     }
 }

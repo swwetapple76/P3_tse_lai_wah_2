@@ -53,18 +53,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
-        /*//3a.b.	Use Intent to link two activity and create onClickListener
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 3.c. get the detail from Dummy data
-                Intent intent = new Intent(mContext,ListDetailNeighbourActivity.class);
-                intent.putExtra("name",neighbour.getName());
-                intent.putExtra("avatar",neighbour.getAvatarUrl());
-
-                mContext.startActivity(intent);
-            }
-        });*/
         // Gson
         Gson gson = new Gson();
         holder.itemView.setOnClickListener(v -> {

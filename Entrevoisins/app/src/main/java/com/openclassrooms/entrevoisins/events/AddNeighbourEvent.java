@@ -9,14 +9,9 @@ public class AddNeighbourEvent {
 
     /**
      * Neighbour to Add
-     */
-    public Neighbour neighbour;
-
-    /**
-     * Constructor.
      * @param neighbour
      */
+
     public AddNeighbourEvent(Neighbour neighbour) {
-        this.neighbour = neighbour;
     }
 }
