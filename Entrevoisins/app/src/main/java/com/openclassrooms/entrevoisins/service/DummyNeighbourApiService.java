@@ -48,6 +48,12 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     }
 
     @Override
+    public void changeStatus(Neighbour neighbour) {
+        neighbours.get(neighbour.getId()).setFavorites(!neighbour.isFavorites());
+
+    }
+
+    @Override
     public void addNeighbour(Neighbour neighbour) { neighbours.add(neighbour);
     }
 }

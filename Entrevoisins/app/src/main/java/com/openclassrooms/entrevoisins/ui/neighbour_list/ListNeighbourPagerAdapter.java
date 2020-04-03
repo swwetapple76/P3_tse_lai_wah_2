@@ -46,12 +46,6 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
         return
                 mContext.getResources().getString(TAB_TITLES[position]);
         }
-
-        /**
-         * get the number of pages
-         * @return
-         */
-
     @Override
     public int getCount() {
         // Show 2 total pager

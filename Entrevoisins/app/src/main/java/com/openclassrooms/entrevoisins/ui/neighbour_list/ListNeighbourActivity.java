@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 
 public class ListNeighbourActivity extends AppCompatActivity {
     FloatingActionButton mAddButton;
-    // modify for favorites
     private NeighbourApiService mApiServices;
     private TabLayout tabLayout;
     private ViewPager viewPager;

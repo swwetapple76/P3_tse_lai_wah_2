@@ -85,11 +85,11 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!favoriteNeighbour){
                     mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_yellow_24dp));
-                    mApiServices.getNeighbourById(neighbour.getId()).setFavorites(true);
+                    mApiServices.changeStatus(neighbour);
                     favoriteNeighbour=true;
                 }else{
                     mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_border_black_24dp));
-                    mApiServices.getNeighbourById(neighbour.getId()).setFavorites(false);
+                    mApiServices.changeStatus(neighbour);
                     favoriteNeighbour=false;
                 }
 

@@ -29,5 +29,6 @@ public interface NeighbourApiService {
      */
     void deleteNeighbour(Neighbour neighbour);
 
+    void changeStatus(Neighbour neighbour);
 
 }
