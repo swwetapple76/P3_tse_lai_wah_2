@@ -46,9 +46,10 @@ public class NeighbourServiceTest {
 
     @Test
     public void ChangeNeighbourFavoriteStatus(){
-        service.getNeighbours().get(1).setFavorites(false);
+        Neighbour neighbourToChange = service.getNeighbours().get(1);
+        service.changeStatus(neighbourToChange);
         assertFalse(service.getNeighbours().get(1).isFavorites());
-        service.getNeighbours().get(0).setFavorites(true);
+        service.changeStatus(neighbourToChange);
         assertTrue(service.getNeighbours().get(0).isFavorites());
 
 
